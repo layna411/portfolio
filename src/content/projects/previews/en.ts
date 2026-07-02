@@ -3,6 +3,7 @@ import thumbnailMicrogreenz from "../../../assets/thumbnails/microgreenz.png";
 import thumbnailRobokolam from "../../../assets/thumbnails/robokolam.png";
 import thumbnailSmartjaw from "../../../assets/thumbnails/smartjaw.png";
 import thumbnailGokart from "../../../assets/thumbnails/gokart.png";
+import thumbnailGithub from "../../../assets/thumbnails/github.png";
 
 import type { ProjectPreview } from "../../types";
 
@@ -36,5 +37,11 @@ export default [
     slug: "gokart",
     thumbnail: thumbnailGokart,
     description: "Real-time GoKart IoT telemetry dashboard",
+  },
+  {
+    title: "More Projects",
+    slug: "github-redirect",
+    thumbnail: thumbnailGithub,
+    description: "Explore my other projects and repositories on GitHub",
   },
 ] as const satisfies ProjectPreview[];
