@@ -200,8 +200,8 @@ const getInTouchClassNames = computed(() => {
     display: flex;
     gap: var(--space-xs);
     transition: color 0.2s ease-in-out;
-    opacity: var(--scrolled);
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: all;
 
     &-clickable {
       pointer-events: all;

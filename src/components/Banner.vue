@@ -72,6 +72,7 @@ watchEffect((onInvalidate) => {
   width: fit-content;
   transform-origin: center center;
   position: relative;
+  white-space: nowrap;
 
   &-background {
     position: absolute;

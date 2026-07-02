@@ -103,7 +103,7 @@ import AppearingText from "../../../components/AppearingText.vue";
   }
 
   &-banner {
-    position: absolute;
+    position: absolute !important;
     bottom: 0;
     right: -16px;
     z-index: 10;
