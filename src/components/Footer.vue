@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import Social from "./Social.vue";
-import Link from "./Link.vue";
-import Clickable from "./Clickable.vue";
 import NotchSection from "./NotchSection.vue";
-import { t } from "../i18n/utils/translate";
 import ButtonRound from "./ButtonRound.vue";
 import { lenis } from "../composables/useScroll";
 import ArrowRightLong from "./icons/ArrowRightLong.vue";
@@ -18,7 +15,6 @@ const handleBackToTop = () => {
 };
 
 const { withSocial = true } = defineProps<Props>();
-const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
 </script>
 
 <template>
@@ -37,42 +33,11 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
           <ArrowRightLong class="footer-back-to-top-icon" />
         </ButtonRound>
       </div>
-      <div class="footer-top">
-        <Social v-if="withSocial" />
-      </div>
+
       <div class="footer-credits">
-        <div v-if="showAttribution" class="footer-credits-built">
-          <p>
-            {{ t("original-concept-by") }}
-          </p>
-          <Clickable renderAs="div">
-            <Link
-              href="https://david-hckh.com"
-              class="footer-link children-unclickable"
-              external
-              data-cursor="circle-white"
-              data-hoversound="hover"
-              >David Heckhoff</Link
-            >
-          </Clickable>
-        </div>
-        <div class="footer-credits-music">
-          <p>
-            {{ t("music-produced-by") }}
-          </p>
-          <Clickable renderAs="div">
-            <Link
-              href="https://soundcloud.com/hmsurf"
-              class="footer-link children-unclickable"
-              external
-              data-cursor="circle-white"
-              data-hoversound="hover"
-              >HM Surf</Link
-            >
-          </Clickable>
-        </div>
-        <p>Designed by layn</p>
-        <p>© {{ new Date().getFullYear() }} Layna S</p>
+        <Social v-if="withSocial" class="footer-social" />
+        <p class="designed-by">Designed by layn</p>
+        <p class="copyright">© {{ new Date().getFullYear() }} Layna S</p>
       </div>
     </div>
   </footer>
@@ -90,10 +55,10 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xl);
+    gap: var(--space-md);
     width: 100%;
     max-width: calc(var(--breakpoint-xxxl));
-    padding: calc(var(--space-outer) + var(--space-sm)) var(--space-outer);
+    padding: calc(var(--space-outer) + var(--space-sm) * 1.5) var(--space-outer) calc(var(--space-outer) * 0.7);
     position: relative;
   }
 
@@ -102,7 +67,7 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
 
     @include mixins.mq("md") {
       position: absolute;
-      top: calc(var(--space-outer) + var(--space-sm));
+      top: calc(var(--space-outer) + var(--space-sm) * 0.5);
       left: 50%;
       transform: translateX(-50%);
     }
@@ -112,59 +77,28 @@ const showAttribution = import.meta.env.VITE_SHOW_ATTRIBUTION !== "false";
     }
   }
 
-  &-top {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-xl);
-
-    @include mixins.mq("md") {
-      gap: var(--space-md);
-      flex-direction: row;
-    }
-
-    &-links {
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
-      gap: var(--space-md);
-
-      &-legal {
-        display: flex;
-        flex-direction: row;
-        gap: var(--space-md);
-      }
-
-      @include mixins.mq("md") {
-        gap: var(--space-lg);
-        flex-direction: row;
-        position: relative;
-        margin-left: auto;
-      }
-    }
-  }
-
-  &-link {
-    font-weight: 700;
+  &-social {
+    margin-bottom: var(--space-xs);
   }
 
   &-credits {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     width: 100%;
     font-size: var(--font-size-sm);
     text-align: center;
+    font-weight: 700;
 
-    &-built,
-    &-music {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: var(--space-xxs);
+    .designed-by {
+      color: var(--color-text-300);
+      font-size: var(--font-size-sm);
+    }
+
+    .copyright {
+      color: var(--color-text-400);
+      font-size: var(--font-size-sm);
     }
   }
 
